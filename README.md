@@ -3,7 +3,17 @@ Containers
 
 ### Overview
 
-The following containers are used for PrivateTravis builds.
+The following containers are used for PrivateTravis builds. For running your own CI you have 3 options:
+
+* Run these containers.
+* Fork and setup them up the way you wish (more applications baked in to speed up runs).
+* Add some more languages and contribute back to this project.
+
+### Runner
+
+The runner can be found here:
+
+https://github.com/nickschuch/PrivateTravis
 
 ### Containers
 
