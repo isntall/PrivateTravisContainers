@@ -1,4 +1,4 @@
-PROVIDER := nickschuch
+PROVIDER := privatetravis
 
 build:
 	docker build --no-cache -t $(PROVIDER)/base base/.
