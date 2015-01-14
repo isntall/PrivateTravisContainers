@@ -29,13 +29,13 @@ RUN apt-get install -y sudo
 
 RUN git clone https://github.com/CHH/phpenv.git /tmp/phpenv
 RUN /tmp/phpenv/bin/phpenv-install.sh
-RUN scp /tmp/phpenv/extensions/* $HOME/.phpenv/libexec/
+RUN scp /tmp/phpenv/extensions/* /root/.phpenv/libexec/
 
-RUN echo 'eval "$(phpenv init -)"' >> /$HOME/.bashrc
-ENV PATH /home/travis/.phpenv/shims:/home/travis/.phpenv/bin:$PATH
+RUN echo 'eval "$(phpenv init -)"' >> /root/.bashrc
+ENV PATH /root/.phpenv/shims:/root/.phpenv/bin:$PATH
 
-RUN git clone git://github.com/nickschuch/php-build.git $HOME/.phpenv/plugins/php-build
-RUN sudo $HOME/.phpenv/plugins/php-build/install.sh
+RUN git clone git://github.com/nickschuch/php-build.git /root/.phpenv/plugins/php-build
+RUN sudo /root/.phpenv/plugins/php-build/install.sh
 
 ##
 # Composer.
