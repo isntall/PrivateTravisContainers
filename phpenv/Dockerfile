@@ -23,17 +23,6 @@ RUN apt-get install -y ccache
 # Ensure we can sudo.
 RUN apt-get install -y sudo
 
-### 
-# Travis user
-##
-
-RUN adduser --disabled-login --gecos 'Travis' travis
-RUN echo 'travis ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
-
-USER travis
-ENV HOME /home/travis
-WORKDIR /home/travis
-
 ##
 # PHPENV.
 ##
@@ -60,7 +49,7 @@ RUN bash -c "wget http://getcomposer.org/composer.phar && chmod 775 composer.pha
 
 RUN sudo gem install travis --no-rdoc --no-ri
 RUN mkdir ~/.travis
-RUN git clone https://github.com/travis-ci/travis-build.git /home/travis/.travis/travis-build && cd /home/travis/.travis/travis-build && git reset --hard e5553110116f026075d47dfd922c5b7427539dc7
+RUN git clone https://github.com/travis-ci/travis-build.git /root/.travis/travis-build && cd /root/.travis/travis-build && git reset --hard e5553110116f026075d47dfd922c5b7427539dc7
 RUN travis version
 
 ##
@@ -72,4 +61,3 @@ COPY spec spec
 RUN rake spec
 
 WORKDIR /data
-
