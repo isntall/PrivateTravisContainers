@@ -63,13 +63,31 @@ This Docker container provides a basic Postgres service.
 [Read more here](postgres)
 
 ### Installation
+(exmples)
+
+Install Docker
+Ubuntu 14.04
+```
+sudo apt-get install docker
+```
+Centos7
+```
+yum install -y http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+yum install -y docker
+```
+
+Install Make
 
 We have a simple Makefile in this repository to help with building the
 containers. This project requires you have the "make" package installed.
 
+Ubuntu 14.04
 ```
-eg. apt-get install -y make
-
+$ sudo apt-get install -y make
+```
+Centos7
+```
+$ sudo yum install -y make
 ```
 
 On a Docker based host run the following command:
