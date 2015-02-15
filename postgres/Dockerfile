@@ -2,16 +2,16 @@ FROM       privatetravis/base
 MAINTAINER nick_schuch
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV PG_VERSION 9.1
+ENV PG_VERSION 9.3
 ENV PG_USER postgres
 ENV PG_PASS postgres
 
 ##
 # Packages.
 ##
-
-RUN apt-get update
+RUN apt-get clean && apt-get update
 RUN apt-get -y install postgresql postgresql-client postgresql-contrib
+RUN apt-get autoremove && apt-get clean
 
 ##
 # Configuration.

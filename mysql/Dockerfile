@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV MYSQL_USER root
 ENV MYSQL_PASS root
 
-RUN apt-get update
+RUN apt-get clean &&  apt-get update
 
 ##
 # Configuration.
@@ -19,6 +19,7 @@ RUN echo "mysql-server mysql-server/root_password_again password $MYSQL_PASS" | 
 ##
 
 RUN apt-get install -y mysql-server
+RUN apt-get autoremove && apt-get clean
 
 # We do this so all other Docker containers can access this host.
 RUN sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf
