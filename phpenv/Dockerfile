@@ -9,11 +9,12 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
 
 # Saves us from stale repository issues.
-RUN apt-get update
+RUN apt-get clean && apt-get update
 
 # Some base packages.
 RUN apt-get install -y make re2c bison libxml2-dev libssl-dev libbz2-dev libcurl3-dev libdb5.1-dev libjpeg-dev libpng-dev libXpm-dev libfreetype6-dev libt1-dev libgmp3-dev libc-client-dev libldap2-dev libmcrypt-dev libmhash-dev freetds-dev libz-dev libmysqlclient15-dev ncurses-dev libpcre3-dev unixODBC-dev libsqlite-dev libaspell-dev libreadline6-dev librecode-dev libsnmp-dev libtidy-dev libxslt-dev libt1-dev
 
+RUN apt-get install -y apache2 apache2-mpm-prefork
 # Tools for phpenv.
 RUN apt-get build-dep -y php5-cli
 
@@ -34,7 +35,8 @@ RUN scp /tmp/phpenv/extensions/* /root/.phpenv/libexec/
 RUN echo 'eval "$(phpenv init -)"' >> /root/.bashrc
 ENV PATH /root/.phpenv/shims:/root/.phpenv/bin:$PATH
 
-RUN git clone git://github.com/nickschuch/php-build.git /root/.phpenv/plugins/php-build
+RUN git clone git://github.com/CHH/php-build.git /root/.phpenv/plugins/php-build
+RUN echo "--with-apxs2=/usr/bin/apxs2" >> /root/.phpenv/plugins/php-build/share/php-build/default_configure_options
 RUN sudo /root/.phpenv/plugins/php-build/install.sh
 
 ##
