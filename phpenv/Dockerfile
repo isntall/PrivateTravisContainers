@@ -24,6 +24,8 @@ RUN apt-get install -y ccache
 # Ensure we can sudo.
 RUN apt-get install -y sudo
 
+RUN apt-get clean && apt-get autoremove -y
+
 ##
 # PHPENV.
 ##

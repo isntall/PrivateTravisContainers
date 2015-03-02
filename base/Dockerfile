@@ -7,13 +7,8 @@ MAINTAINER nick_schuch
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get install -y build-essential
-RUN apt-get install -y software-properties-common
-RUN apt-get install -y byobu curl git htop man unzip vim wget
-RUN apt-get install -y python-software-properties
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get clean && apt-get update
+RUN apt-get install -y build-essential software-properties-common byobu curl git htop man unzip vim wget python-software-properties
 
 ##
 # Ruby.
@@ -40,3 +35,6 @@ RUN gem install highline -v 1.6.21
 RUN gem install specinfra -v 1.27.3
 RUN gem install serverspec -v 1.16.0
 RUN gem install rake
+
+
+RUN apt-get clean && apt-get autoremove -y
