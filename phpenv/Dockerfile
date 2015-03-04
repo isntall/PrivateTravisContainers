@@ -39,7 +39,7 @@ ENV PATH /root/.phpenv/shims:/root/.phpenv/bin:$PATH
 
 RUN git clone git://github.com/CHH/php-build.git /root/.phpenv/plugins/php-build
 RUN sudo /root/.phpenv/plugins/php-build/install.sh
-RUN sed -i '/--with-fpm/d' /root/.phpenv/plugins/php-build/share/php-build/default_configure_options
+RUN sed -i '/--enable-fpm/d' /root/.phpenv/plugins/php-build/share/php-build/default_configure_options
 RUN echo "--with-apxs2=/usr/bin/apxs2" >> /root/.phpenv/plugins/php-build/share/php-build/default_configure_options
 RUN sudo /root/.phpenv/plugins/php-build/install.sh
 
