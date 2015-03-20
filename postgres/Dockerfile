@@ -11,7 +11,7 @@ ENV PG_PASS postgres
 ##
 RUN apt-get clean && apt-get update
 RUN apt-get -y install postgresql postgresql-client postgresql-contrib
-RUN apt-get autoremove && apt-get clean
+RUN apt-get -y autoremove && apt-get clean
 
 ##
 # Configuration.
