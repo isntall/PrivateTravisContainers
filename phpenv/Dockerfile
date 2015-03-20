@@ -20,8 +20,8 @@ RUN apt-get build-dep -y php5-cli
 # Make the PHP compiles go faster.
 # Ensure we can sudo.
 RUN apt-get install -y ccache sudo
-RUN apt-get autoremove -y && apt-get clean
 
+RUN apt-get clean && apt-get autoremove -y
 
 ##
 # PHPENV.
@@ -34,7 +34,8 @@ RUN scp /tmp/phpenv/extensions/* /root/.phpenv/libexec/
 RUN echo 'eval "$(phpenv init -)"' >> /root/.bashrc
 ENV PATH /root/.phpenv/shims:/root/.phpenv/bin:$PATH
 
-RUN git clone git://github.com/nickschuch/php-build.git /root/.phpenv/plugins/php-build
+RUN git clone git://github.com/CHH/php-build.git /root/.phpenv/plugins/php-build
+RUN echo "--with-apxs2=/usr/bin/apxs2" >> /root/.phpenv/plugins/php-build/share/php-build/default_configure_options
 RUN sudo /root/.phpenv/plugins/php-build/install.sh
 
 ##
